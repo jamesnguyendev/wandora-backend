@@ -36,3 +36,5 @@ Thumbs.db
 prisma/migrations/
 prisma/dev.db
 
+
+/src/generated/prisma

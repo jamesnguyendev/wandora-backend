@@ -10,7 +10,7 @@ import { authRouter } from "./api/routes/auth.routes";
 import { bookingsRouter } from "./api/routes/booking.routes";
 import { listingsRouter } from "./api/routes/listings.routes";
 
-const app = express();
+export const app = express();
 
 // Middleware enabled
 app.use(helmet());
@@ -22,9 +22,6 @@ app.use(morgan("dev"));
 app.use("/auth", authRouter);
 app.use("/listings", listingsRouter);
 app.use("/bookings", bookingsRouter);
-
-// Health
-app.get("/health", (_, res) => res.json({ status: "ok", project: "Wandora" }));
 
 app.use(
   (err: any, _req: express.Request, res: express.Response, _next: any) => {

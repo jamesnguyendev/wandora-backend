@@ -1,0 +1,37 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            String         @id @default(uuid())
+  email         String         @unique
+  passwordHash  String
+  role          String         @default("guest")
+  verified      Boolean        @default(false)
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+}
+
+model Listing {
+  id          String   @id @default(uuid())
+  hostId      String   @default(uuid())
+  title       String
+  description String?
+  latitude    Float
+  longitude   Float
+  priceBase   Float
+  type        String // e.g., "room", "experience"
+  createdAt   DateTime @default(now())
+
+  @@index([title])
+  @@index([latitude, longitude])
+  @@index([priceBase])
+  @@index([type])
+  @@index([createdAt])
+}

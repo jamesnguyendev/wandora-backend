@@ -1,7 +1,7 @@
 import { Router } from "express";
+import * as authController from "../controllers/auth.controller";
 
 export const authRouter = Router();
 
-authRouter.get("/test", (_req, res) => {
-  res.json({ message: "Auth router is working!" });
-});
+authRouter.post("/register", authController.register);
+authRouter.post("/login", authController.login);
