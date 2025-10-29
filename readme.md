@@ -2,7 +2,7 @@
 
 The backend for **Wandora**, a Mini booking project, built with **Node.js**, **TypeScript**, using **Express**, **Prisma**, **Redis**, **AWS**, and other related technologies.
 
-![Tech Stack](https://raw.githubusercontent.com/jamesnguyendev/wandora-backend/main/images/tech-stack.png)
+![Tech Stack](https://images5.alphacoders.com/137/thumb-1920-1377411.png)
 
 ---
 
@@ -28,7 +28,7 @@ PORT=
 DATABASE_URL=""
 JWT_SECRET=""
 JWT_EXPIRES_IN=""
-JWT_REFRESH_EXPIRE=
+JWT_REFRESH_EXPIRE=""
 REDIS_URL=""
 REDIS_PORT=
 REDIS_PASSWORD=
