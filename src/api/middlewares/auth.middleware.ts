@@ -3,13 +3,7 @@ import { NextFunction, Request, Response } from "express";
 import jwt from "jsonwebtoken";
 
 import { prisma } from "../../libs/db/prismaClient";
-import { logger } from "../../utils/logger";
-import { log } from "console";
-
-interface JwtPayload {
-  userId: number;
-  role: "guest" | "host" | "admin";
-}
+import { JwtPayload } from "../../types/jwt.types";
 
 export const authenticateJWT = async (
   req: Request,

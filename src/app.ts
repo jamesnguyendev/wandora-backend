@@ -19,9 +19,9 @@ app.use(express.json());
 app.use(morgan("dev"));
 
 // Routes would be defined here
-app.use("/auth", authRouter);
-app.use("/listings", listingsRouter);
-app.use("/bookings", bookingsRouter);
+app.use("/api/v1/auth", authRouter);
+app.use("/api/v1/listings", listingsRouter);
+app.use("/api/v1/bookings", bookingsRouter);
 
 app.use(
   (err: any, _req: express.Request, res: express.Response, _next: any) => {

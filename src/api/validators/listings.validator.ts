@@ -8,3 +8,10 @@ export const createListingSchema = z.object({
   priceBase: z.number().positive(),
   type: z.enum(["room", "experience"]),
 });
+
+export const bookingSchema = z.object({
+  listingId: z.string().uuid(),
+  startDate: z.string().transform((d) => new Date(d)),
+  endDate: z.string().transform((d) => new Date(d)),
+  totalPrice: z.number().positive(),
+});

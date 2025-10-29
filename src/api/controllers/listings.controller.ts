@@ -72,3 +72,23 @@ export const updateListing = async (req: Request, res: Response) => {
     return ApiResponse.error(res, "Failed to update listing", 500, error);
   }
 };
+
+export const searchListing = async (req: Request, res: Response) => {
+  try {
+    const query = String(req.query.q || "");
+    const page = Number(req.query.page) || 1;
+    const limit = Number(req.query.limit) || 10;
+
+    if (!query) return ApiResponse.error(res, "Search query is required", 400);
+
+    const data = await listingsService.searchListings(query, page, limit);
+
+    return ApiResponse.success(
+      res,
+      "Search results fetched successfully",
+      data,
+    );
+  } catch (error) {
+    return ApiResponse.error(res, "Failed to search listings", 500, error);
+  }
+};

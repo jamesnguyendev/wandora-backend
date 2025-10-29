@@ -11,6 +11,7 @@ import {
 export const listingsRouter = Router();
 
 listingsRouter.get("/", listingsController.getListings);
+listingsRouter.get("/search", listingsController.searchListing);
 listingsRouter.get("/:id", listingsController.getListingById);
 
 listingsRouter.post(

@@ -11,7 +11,7 @@
     "lint": "eslint . --ext .ts",
     "prisma:setup": "npx prisma db push && npx prisma generate",
     "test": "jest --detectOpenHandles --forceExit --passWithNoTests",
-    "test:listings": "jest listings.test.ts --detectOpenHandles --forceExit",
+    "test:booking": "jest booking.test.ts --detectOpenHandles --forceExit",
     "test:watch": "jest --watch"
   },
   "keywords": [],
