@@ -25,11 +25,11 @@ npm install
 
 ```env
 PORT=
-DATABASE_URL=""
-JWT_SECRET=""
-JWT_EXPIRES_IN=""
-JWT_REFRESH_EXPIRE=""
-REDIS_URL=""
+DATABASE_URL=
+JWT_SECRET=
+JWT_EXPIRES_IN=
+JWT_REFRESH_EXPIRE=
+REDIS_URL=
 REDIS_PORT=
 REDIS_PASSWORD=
 ```
@@ -114,6 +114,17 @@ npm run test:watch
 - **Morgan** - HTTP request logging
 - **Zod** - Input validation
 - **AWS** - Cloud services for hosting, storage, and other cloud solutions
+
+---
+
+## 📚 API Documentation
+
+Detailed API documentation including request/response schemas and an OpenAPI (Swagger) spec is available in the `docs/` folder:
+
+- `docs/api.md` - human-readable API reference (endpoints, examples, usage)
+- `docs/openapi.yaml` - OpenAPI 3.0 specification (can be imported into Swagger UI / Postman)
+
+To view the API locally, run the server and you will see it on `http://localhost:4000/docs`.
 
 ---
 

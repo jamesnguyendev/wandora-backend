@@ -6,30 +6,23 @@ import cors from "cors";
 import { logger } from "./utils/logger";
 import { PORT } from "./config/index";
 
-import { authRouter } from "./api/routes/auth.routes";
-import { bookingsRouter } from "./api/routes/booking.routes";
-import { listingsRouter } from "./api/routes/listings.routes";
+import { setupSwagger } from "./config/swagger";
+import { apiRouter } from "./api/routes/api.route";
+import { errorHandler } from "./api/middlewares/error.middleware";
+import { rateLimiter } from "./api/middlewares/rateLimit.middleware";
 
 export const app = express();
 
-// Middleware enabled
 app.use(helmet());
 app.use(cors());
 app.use(express.json());
 app.use(morgan("dev"));
+app.use(rateLimiter);
 
-// Routes would be defined here
-app.use("/api/v1/auth", authRouter);
-app.use("/api/v1/listings", listingsRouter);
-app.use("/api/v1/bookings", bookingsRouter);
+app.use("/api/v1", apiRouter);
 
-app.use(
-  (err: any, _req: express.Request, res: express.Response, _next: any) => {
-    console.error(err);
-    res
-      .status(err.status || 500)
-      .json({ message: err.message || "Internal Server Error" });
-  },
-);
+setupSwagger(app);
+
+app.use(errorHandler);
 
 app.listen(PORT, () => logger.info(`Server running on port ${PORT}`));
