@@ -3,6 +3,7 @@ import fs from "fs";
 import path from "path";
 import yaml from "yaml";
 import { Express } from "express";
+import basicAuth from "express-basic-auth";
 
 export const setupSwagger = (app: Express): void => {
   const __dirname = path.resolve();
@@ -11,7 +12,15 @@ export const setupSwagger = (app: Express): void => {
   const fileContents = fs.readFileSync(filePath, "utf8");
   const swaggerDocument = yaml.parse(fileContents);
 
-  app.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+  app.use(
+    "/docs",
+    swaggerUi.serve,
+    basicAuth({
+      users: { admin: "phiadmin123" },
+      challenge: true,
+    }),
+    swaggerUi.setup(swaggerDocument),
+  );
 
   // console.log(` Swagger Docs ready at: ${process.env.LOCALHOST}/docs`);
 };
