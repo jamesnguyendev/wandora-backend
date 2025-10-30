@@ -16,7 +16,7 @@ export const setupSwagger = (app: Express): void => {
     "/docs",
     swaggerUi.serve,
     basicAuth({
-      users: { admin: "phiadmin123" },
+      users: { admin: process.env.PASSWORD_SWAGGER || "" },
       challenge: true,
     }),
     swaggerUi.setup(swaggerDocument),
