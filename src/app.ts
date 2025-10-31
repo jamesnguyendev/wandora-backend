@@ -25,4 +25,6 @@ setupSwagger(app);
 
 app.use(errorHandler);
 
+app.get("/health", (_req, res) => res.send("OK"));
+
 app.listen(PORT, () => logger.info(`Server running on port ${PORT}`));
