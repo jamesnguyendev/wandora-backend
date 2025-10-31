@@ -22,12 +22,6 @@
     "moduleDetection": "force",
     "forceConsistentCasingInFileNames": true,
     "skipLibCheck": true,
-    "baseUrl": "src",
-    "paths": {
-      "@/*": ["*"]
-    },
-
-    "ignoreDeprecations": "6.0"
   },
   "include": ["src"]
 }
