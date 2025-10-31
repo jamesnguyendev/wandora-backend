@@ -92,3 +92,23 @@ export const searchListing = async (req: Request, res: Response) => {
     return ApiResponse.error(res, "Failed to search listings", 500, error);
   }
 };
+
+export const uploadImage = async (req: Request, res: Response) => {
+  try {
+    const { listingId, base64Image } = req.body;
+
+    if (!listingId || !base64Image)
+      return ApiResponse.error(res, "Invalid input", 400);
+
+    const listing = await listingsService.uploadListingImage(
+      listingId,
+      base64Image,
+    );
+
+    return ApiResponse.success(res, "Image uploaded successfully", {
+      imageUrl: listing.imageUrl,
+    });
+  } catch (error) {
+    return ApiResponse.error(res, "Failed to upload image", 500, error);
+  }
+};

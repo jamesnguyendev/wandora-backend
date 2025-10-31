@@ -27,6 +27,7 @@ model Listing {
   latitude    Float
   longitude   Float
   priceBase   Float
+  imageUrl    String?
   type        String // e.g., "room", "experience"
   createdAt   DateTime  @default(now())
   Booking     Booking[]

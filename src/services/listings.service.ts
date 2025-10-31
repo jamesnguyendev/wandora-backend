@@ -1,3 +1,4 @@
+import axios from "axios";
 import { redisClient } from "../libs/cache/redisClient";
 import { prisma } from "../libs/db/prismaClient";
 
@@ -84,4 +85,25 @@ export const searchListings = async (query: string, page = 1, limit = 10) => {
   await redisClient.set(cacheKey, JSON.stringify(result), "EX", 600);
 
   return result;
+};
+
+export const uploadListingImage = async (
+  listingId: string,
+  base64Image: string,
+) => {
+  const lambdaUrl = process.env.LAMBDA_UPLOAD_URL!;
+
+  const response = await axios.post(lambdaUrl, {
+    listingId,
+    base64Image,
+  });
+
+  const imageUrl = response.data.imageUrl;
+
+  const listing = await prisma.listing.update({
+    where: { id: listingId },
+    data: { imageUrl },
+  });
+
+  return listing;
 };

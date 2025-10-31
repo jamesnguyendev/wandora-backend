@@ -12,6 +12,7 @@ export const listingsRouter = Router();
 
 listingsRouter.get("/", listingsController.getListings);
 listingsRouter.get("/search", listingsController.searchListing);
+listingsRouter.post("/upload-image", listingsController.uploadImage);
 listingsRouter.get("/:id", listingsController.getListingById);
 
 listingsRouter.post(
@@ -29,7 +30,7 @@ listingsRouter.delete(
   listingsController.deleteListing,
 );
 
-listingsRouter.put(
+listingsRouter.put( 
   "/:id",
   authenticateJWT,
   authorizeRoles("admin"),
