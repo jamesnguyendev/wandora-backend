@@ -32,6 +32,11 @@ JWT_REFRESH_EXPIRE=
 REDIS_URL=
 REDIS_PORT=
 REDIS_PASSWORD=
+LAMBDA_UPLOAD_URL=
+LOCALHOST=
+PRODUCTION=
+
+PASSWORD_SWAGGER=
 ```
 
 > Note: Fill in all values according to your environment.
