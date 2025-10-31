@@ -30,7 +30,7 @@ listingsRouter.delete(
   listingsController.deleteListing,
 );
 
-listingsRouter.put( 
+listingsRouter.put(
   "/:id",
   authenticateJWT,
   authorizeRoles("admin"),

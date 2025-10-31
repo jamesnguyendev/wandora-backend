@@ -127,7 +127,7 @@ Detailed API documentation including request/response schemas and an OpenAPI (Sw
 - `docs/api.md` - human-readable API reference (endpoints, examples, usage)
 - `docs/openapi.yaml` - OpenAPI 3.0 specification (can be imported into Swagger UI / Postman)
 
-To view the API locally, run the server and you will see it on `http://localhost:4000/docs`.
+To view the API locally, run the server and you will see it on `http://your-url/docs`.
 
 ---
 
