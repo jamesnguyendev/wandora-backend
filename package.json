@@ -9,7 +9,7 @@
     "build": "tsc",
     "start": "node dist/app.js",
     "lint": "eslint . --ext .ts",
-    "prisma:setup": "npx prisma db push && npx prisma generate",
+    "prisma:setup": "npx prisma generate && npx prisma db push",
     "test": "jest --detectOpenHandles --forceExit --passWithNoTests",
     "test:booking": "jest booking.test.ts --detectOpenHandles --forceExit",
     "test:watch": "jest --watch"
