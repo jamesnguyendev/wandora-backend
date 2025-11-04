@@ -1,6 +1,6 @@
 # Wandora Backend
 
-The backend for **Wandora**, a Mini booking project, built with **Node.js**, **TypeScript**, using **Express**, **Prisma**, **Redis**, **AWS**, and other related technologies.
+The backend for **Wandora**, a Mini booking project, built with **Node.js**, **TypeScript**, using **Express**, **Prisma**, **Redis**, **AWS**, and other related technologies and more.
 
 ![Tech Stack](https://images5.alphacoders.com/137/thumb-1920-1377411.png)
 
