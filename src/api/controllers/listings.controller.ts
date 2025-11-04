@@ -24,7 +24,7 @@ export const getListings = async (req: Request, res: Response) => {
     const limit = Number(req.query.limit) || 10;
 
     const listings = await listingsService.getListings(page, limit);
-    return ApiResponse.success(res, "Listings fetched successfully", listings);
+    return ApiResponse.paginate(res, "Listings fetched successfully", listings);
   } catch (error) {
     return ApiResponse.error(res, "Failed to fetch listings", 500, error);
   }

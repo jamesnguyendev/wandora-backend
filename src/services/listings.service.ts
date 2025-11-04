@@ -16,19 +16,34 @@ export const createListing = async (data: data) => {
 };
 
 export const getListings = async (page = 1, limit = 10) => {
-  return prisma.listing.findMany({
-    skip: (page - 1) * limit,
-    take: limit,
-    select: {
-      id: true,
-      title: true,
-      description: true,
-      latitude: true,
-      longitude: true,
-      priceBase: true,
-      type: true,
-    },
-  });
+  const skip = (page - 1) * limit;
+  const [data, totalItems] = await Promise.all([
+    prisma.listing.findMany({
+      skip,
+      take: limit,
+      orderBy: { createdAt: "desc" },
+      select: {
+        id: true,
+        title: true,
+        description: true,
+        latitude: true,
+        longitude: true,
+        priceBase: true,
+        type: true,
+      },
+    }),
+    prisma.listing.count(),
+  ]);
+
+  const totalPages = Math.ceil(totalItems / limit);
+
+  return {
+    data,
+    page,
+    limit,
+    totalItems,
+    totalPages,
+  };
 };
 
 export const getListingById = async (id: string) => {
