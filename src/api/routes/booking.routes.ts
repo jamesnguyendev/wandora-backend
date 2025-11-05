@@ -11,6 +11,7 @@ import { bookingSchema } from "../validators/listings.validator";
 export const bookingsRouter = Router();
 
 bookingsRouter.get("/", authenticateJWT, bookingsService.getListBookings);
+bookingsRouter.get("/me", authenticateJWT, bookingsService.getMyBookings);
 
 bookingsRouter.post(
   "/",
@@ -26,4 +27,9 @@ bookingsRouter.delete(
   bookingsService.deleteBooking,
 );
 
-bookingsRouter.get("/me", authenticateJWT, bookingsService.getMyBookings);
+bookingsRouter.put(
+  "/:id",
+  authenticateJWT,
+  authorizeRoles("admin"),
+  bookingsService.updateBooking,
+);

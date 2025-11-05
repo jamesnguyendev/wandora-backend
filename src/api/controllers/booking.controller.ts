@@ -77,3 +77,20 @@ export const deleteBooking = async (req: Request, res: Response) => {
     return ApiResponse.error(res, "Failed to delete booking", 500, err);
   }
 };
+
+export const updateBooking = async (req: Request, res: Response) => {
+  try {
+    const id = String(req.params.id);
+    const booking = req.body;
+
+    const updatedBooking = await bookingsService.updateBooking(id, booking);
+
+    if (!updatedBooking) {
+      return ApiResponse.error(res, "Booking not updated", 500);
+    }
+
+    return ApiResponse.success(res, "Booking updated successful", 200);
+  } catch (err) {
+    return ApiResponse.error(res, "Failed to update booking", 500, err);
+  }
+};

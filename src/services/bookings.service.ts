@@ -35,3 +35,10 @@ export const deleteBooking = async (id: string) => {
     where: { id },
   });
 };
+
+export const updateBooking = async (id: string, data: Partial<booking>) => {
+  return prisma.booking.update({
+    where: { id },
+    data,
+  });
+};
