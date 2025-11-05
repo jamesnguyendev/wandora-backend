@@ -23,7 +23,6 @@ app.use(express.json());
 app.use(morgan("dev"));
 app.use(rateLimiter);
 
-app.get("/api/v1/test", (_, res) => res.json({ ok: true }));
 app.use("/api/v1", apiRouter);
 
 setupSwagger(app);
