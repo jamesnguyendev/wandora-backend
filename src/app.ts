@@ -10,13 +10,8 @@ import { setupSwagger } from "./config/swagger";
 import { apiRouter } from "./api/routes/api.route";
 import { errorHandler } from "./api/middlewares/error.middleware";
 import { rateLimiter } from "./api/middlewares/rateLimit.middleware";
-import { frontendOnly } from "./api/middlewares/frontendOnly.middleware";
-import { corsMiddleware } from "./api/middlewares/corsWhiteList.middleware";
 
 export const app = express();
-
-app.use(corsMiddleware);
-app.use(frontendOnly);
 
 app.use(helmet());
 app.use(express.json());
