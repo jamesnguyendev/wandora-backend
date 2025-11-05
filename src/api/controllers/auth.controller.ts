@@ -20,3 +20,16 @@ export const login = async (req: Request, res: Response) => {
     res.status(401).json({ error: err.message });
   }
 };
+
+export const refreshToken = async (req: Request, res: Response) => {
+  const { token } = req.body;
+  if (!token) return res.status(400).json({ message: "Token missing" });
+
+  try {
+    const newToken = await authService.refreshTokenService(token);
+
+    res.json({ token: newToken });
+  } catch (err: any) {
+    res.status(401).json({ error: err.message });
+  }
+};

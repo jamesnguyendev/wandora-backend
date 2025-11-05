@@ -30,7 +30,7 @@ export const loginUser = async (email: string, password: string) => {
   const token = jwt.sign(
     { userId: user.id, role: user.role },
     process.env.JWT_SECRET!,
-    { expiresIn: "1h" },
+    { expiresIn: "30m" },
   );
 
   const userData = {
@@ -41,4 +41,18 @@ export const loginUser = async (email: string, password: string) => {
   };
 
   return { token, userData };
+};
+
+export const refreshTokenService = async (token: string) => {
+  const decoded: any = jwt.verify(token, process.env.JWT_SECRET!, {
+    ignoreExpiration: true,
+  });
+
+  const newToken = jwt.sign(
+    { userId: decoded.userId, role: decoded.role },
+    process.env.JWT_SECRET!,
+    { expiresIn: "30m" },
+  );
+
+  return newToken;
 };
