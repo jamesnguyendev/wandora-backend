@@ -30,7 +30,7 @@ export const loginUser = async (email: string, password: string) => {
   const token = jwt.sign(
     { userId: user.id, role: user.role },
     process.env.JWT_SECRET!,
-    { expiresIn: "30m" },
+    { expiresIn: "2m" },
   );
 
   const userData = {
@@ -51,7 +51,7 @@ export const refreshTokenService = async (token: string) => {
   const newToken = jwt.sign(
     { userId: decoded.userId, role: decoded.role },
     process.env.JWT_SECRET!,
-    { expiresIn: "30m" },
+    { expiresIn: "2m" },
   );
 
   return newToken;
