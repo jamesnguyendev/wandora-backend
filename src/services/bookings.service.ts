@@ -25,3 +25,13 @@ export const getBookingById = async (id: string) => {
     include: { listing: true, user: true },
   });
 };
+
+export const getListBookings = async () => {
+  return prisma.booking.findMany({});
+};
+
+export const deleteBooking = async (id: string) => {
+  return prisma.booking.delete({
+    where: { id },
+  });
+};

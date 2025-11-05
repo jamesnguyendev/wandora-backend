@@ -1,17 +1,29 @@
 import { Router } from "express";
 
 import * as bookingsService from "../controllers/booking.controller";
-import { authenticateJWT } from "../middlewares/auth.middleware";
+import {
+  authenticateJWT,
+  authorizeRoles,
+} from "../middlewares/auth.middleware";
 import { validateBody } from "../middlewares/validate.middleware";
 import { bookingSchema } from "../validators/listings.validator";
 
 export const bookingsRouter = Router();
+
+bookingsRouter.get("/", authenticateJWT, bookingsService.getListBookings);
 
 bookingsRouter.post(
   "/",
   authenticateJWT,
   validateBody(bookingSchema),
   bookingsService.createBooking,
+);
+
+bookingsRouter.delete(
+  "/:id",
+  authenticateJWT,
+  authorizeRoles("admin"),
+  bookingsService.deleteBooking,
 );
 
 bookingsRouter.get("/me", authenticateJWT, bookingsService.getMyBookings);

@@ -47,3 +47,33 @@ export const getMyBookings = async (req: Request, res: Response) => {
     return ApiResponse.error(res, "Failed to fetch bookings", 500, err);
   }
 };
+
+export const getListBookings = async (req: Request, res: Response) => {
+  try {
+    const bookings = await bookingsService.getListBookings();
+
+    if (!bookings) {
+      return ApiResponse.error(res, "No bookings found", 500);
+    }
+
+    return ApiResponse.success(res, "Bookings fetched successful", bookings);
+  } catch (err) {
+    return ApiResponse.error(res, "Failed to fetch bookings", 500, err);
+  }
+};
+
+export const deleteBooking = async (req: Request, res: Response) => {
+  try {
+    const id = String(req.params.id);
+
+    const booking = await bookingsService.deleteBooking(id);
+
+    if (!booking) {
+      return ApiResponse.error(res, "Booking not successful", 500);
+    }
+
+    return ApiResponse.success(res, "Booking deleted successful", 200);
+  } catch (err) {
+    return ApiResponse.error(res, "Failed to delete booking", 500, err);
+  }
+};
