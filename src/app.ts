@@ -10,16 +10,12 @@ import { setupSwagger } from "./config/swagger";
 import { apiRouter } from "./api/routes/api.route";
 import { errorHandler } from "./api/middlewares/error.middleware";
 import { rateLimiter } from "./api/middlewares/rateLimit.middleware";
+import { corsOptions } from "./config/cors.config";
 
 export const app = express();
 
 app.use(helmet());
-app.use(
-  cors({
-    origin: [String(process.env.FRONTEND_ADMIN)],
-    credentials: true,
-  }),
-);
+app.use(cors(corsOptions));
 app.use(express.json());
 app.use(morgan("dev"));
 app.use(rateLimiter);
