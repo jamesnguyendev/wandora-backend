@@ -104,18 +104,9 @@ export const searchListings = async (query: string, page = 1, limit = 10) => {
 };
 
 export const uploadListingImage = async (
+  imageUrl: string,
   listingId: string,
-  base64Image: string,
 ) => {
-  const lambdaUrl = process.env.LAMBDA_UPLOAD_URL!;
-
-  const response = await axios.post(lambdaUrl, {
-    listingId,
-    base64Image,
-  });
-
-  const imageUrl = response.data.imageUrl;
-
   const listing = await prisma.listing.update({
     where: { id: listingId },
     data: { imageUrl },

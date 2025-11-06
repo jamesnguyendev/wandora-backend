@@ -95,19 +95,14 @@ export const searchListing = async (req: Request, res: Response) => {
 
 export const uploadImage = async (req: Request, res: Response) => {
   try {
-    const { listingId, base64Image } = req.body;
+    const { imageUrl, listingId } = req.body;
 
-    if (!listingId || !base64Image)
-      return ApiResponse.error(res, "Invalid input", 400);
+    if (!imageUrl || !listingId)
+      return ApiResponse.error(res, "Invalid input", 500);
 
-    const listing = await listingsService.uploadListingImage(
-      listingId,
-      base64Image,
-    );
+    await listingsService.uploadListingImage(imageUrl, listingId);
 
-    return ApiResponse.success(res, "Image uploaded successfully", {
-      imageUrl: listing.imageUrl,
-    });
+    return ApiResponse.success(res, "Image uploaded successfully", 200);
   } catch (error) {
     return ApiResponse.error(res, "Failed to upload image", 500, error);
   }
