@@ -30,6 +30,7 @@ export const getListings = async (page = 1, limit = 10) => {
         longitude: true,
         priceBase: true,
         type: true,
+        imageUrl: true,
       },
     }),
     prisma.listing.count(),
