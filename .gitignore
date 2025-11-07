@@ -36,5 +36,7 @@ Thumbs.db
 prisma/migrations/
 prisma/dev.db
 
+# personal
+knowledge.txt
 
 /src/generated/prisma
