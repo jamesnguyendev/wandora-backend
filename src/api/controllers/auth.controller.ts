@@ -7,8 +7,7 @@ export const register = async (req: Request, res: Response) => {
     const { email, password } = req.body;
     await authService.registerUser(email, password);
     return ApiResponse.success(res, "Successfully registered");
-  } catch (err: any) {
-    res.status(400).json({ error: err.message });
+  } catch (err: any) {    res.status(400).json({ error: err.message });
   }
 };
 
